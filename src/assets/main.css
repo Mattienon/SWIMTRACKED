@@ -1,0 +1,190 @@
+@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+#app{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+/* Root variables */
+:root {
+  /* Colors */
+  --primary-color: #2C3E50; /* Dark Blue/Gray */
+  --darker-color:#1c2834;
+  --evendarker-color:#121b23;
+  --secondary-color: #e74d3cd7; /* Red */
+  --light-color: #ECF0F1; /* Light Gray */
+  --mediumlight-color: #cad1d3; /* Light Gray */
+  --accent-color: #4398Db; /* Blue */
+
+  /* Text and Font */
+  --heading-color: var(--light-color);
+  --paragraph-color: #7F8C8D; /* Mid gray for paragraphs */
+  --heading-font-family: 'Inter', sans-serif;
+  --paragraph-font-family: 'Ubuntu', sans-serif;
+
+  /* Spacing */
+  --heading-margin: 1rem 0;
+  --paragraph-margin: 0.75rem 0;
+
+  /* Box shadows */
+  --box-shadow-ML1: 0 1px 1px rgba(0,0,0,0.12), 
+  0 2px 2px rgba(0,0,0,0.12), 
+  0 4px 4px rgba(0,0,0,0.12), 
+  0 8px 8px rgba(0,0,0,0.12),
+  0 16px 16px rgba(0,0,0,0.12);
+  --box-shadow-4s: 0 1px 1px rgba(0,0,0,0.15), 
+  0 2px 2px rgba(0,0,0,0.15), 
+  0 4px 4px rgba(0,0,0,0.15), 
+  0 8px 8px rgba(0,0,0,0.15);
+  --box-shadow-6s: 0 1px 1px rgba(0,0,0,0.11), 
+  0 2px 2px rgba(0,0,0,0.11), 
+  0 4px 4px rgba(0,0,0,0.11), 
+  0 8px 8px rgba(0,0,0,0.11), 
+  0 16px 16px rgba(0,0,0,0.11), 
+  0 32px 32px rgba(0,0,0,0.11);
+  --box-shadow-sharp: 0 1px 1px rgba(0,0,0,0.25), 
+  0 2px 2px rgba(0,0,0,0.20), 
+  0 4px 4px rgba(0,0,0,0.15), 
+  0 8px 8px rgba(0,0,0,0.10),
+  0 16px 16px rgba(0,0,0,0.05);
+  --box-shadow-diffuse: 0 1px 1px rgba(0,0,0,0.08), 
+  0 2px 2px rgba(0,0,0,0.12), 
+  0 4px 4px rgba(0,0,0,0.16), 
+  0 8px 8px rgba(0,0,0,0.20);
+  --box-shadow-sky: 0 1px 2px rgba(0,0,0,0.07), 
+  0 2px 4px rgba(0,0,0,0.07), 
+  0 4px 8px rgba(0,0,0,0.07), 
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07), 
+  0 32px 64px rgba(0,0,0,0.07);
+
+
+    /* Font Size Variables */
+    --font-size-xs: 0.75rem;  /* Extra Small */
+    --font-size-sm: 0.875rem; /* Small */
+    --font-size-base: 1rem;   /* Base/Normal */
+    --font-size-md: 1.125rem; /* Medium */
+    --font-size-lg: 1.25rem;  /* Large */
+    --font-size-xl: 1.5rem;   /* Extra Large */
+    --font-size-xxl: 2rem;    /* Extra Extra Large */
+    --font-size-hero: 3rem;   /* Hero Font Size */
+}
+
+/* basic hover varibales */
+
+:root {
+  --hover-transform: translateY(-2px) scale(1.05) var(--darker-color); /* Hover transform effect */
+  --hover-box-shadow: 0 8px 25px var(--primary-color); /* Hover shadow effect */
+  --hover-after-box-shadow:var(--box-shadow-sharp); /* Hover shadow for pseudo-element */
+}
+a,
+.green {
+  text-decoration: none;
+  color: var(--light-color);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font-family);
+  margin: var(--heading-margin);
+}
+
+/* Paragraph styles */
+p {
+  color: var(--paragraph-color);
+  font-family: var(--paragraph-font-family);
+  margin: var(--paragraph-margin);
+  line-height: 1.6; /* Improves readability */
+}
+
+/* Font Styling Classes */
+
+/* Inter Font */
+.inter-regular {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+.inter-bold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+}
+
+.inter-light {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+}
+
+.inter-extra-bold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+}
+
+.inter-italic {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Ubuntu Font */
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Additional styles */
+.green:hover {
+  color: var(--secondary-color); /* Hover changes to the red color */
+}
