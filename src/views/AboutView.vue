@@ -136,7 +136,7 @@
               </h4>
               <v-divider class="mb-3"></v-divider>
               <v-row>
-                <v-col cols="3" md="6">
+                <v-col cols="6" md="6">
                   <v-text-field
                     label="Free/Crawl"
                     v-model="personalBests.crawl"
@@ -145,7 +145,7 @@
                     required
                   />
                 </v-col>
-                <v-col cols="3" md="6">
+                <v-col cols="6" md="6">
                   <v-text-field
                     label="Breaststroke"
                     v-model="personalBests.breaststroke"
@@ -154,7 +154,7 @@
                     required
                   />
                 </v-col>
-                <v-col cols="3" md="6">
+                <v-col cols="6" md="6">
                   <v-text-field
                     label="Butterfly"
                     v-model="personalBests.butterfly"
@@ -163,7 +163,7 @@
                     required
                   />
                 </v-col>
-                <v-col cols="3" md="6">
+                <v-col cols="6" md="6">
                   <v-text-field
                     label="Backstroke"
                     v-model="personalBests.backstroke"

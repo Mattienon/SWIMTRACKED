@@ -43,16 +43,6 @@
             />
             <div class="mt-2">{{ distanceValue }} meters</div>
           </v-card-text>
-          
-            <p>Or input distance manually</p>
-            <v-text-field
-              label="Set Your Distance"
-              type="number"
-              min="0"
-              v-model="distanceValue" 
-              prepend-icon="mdi-swim"
-              class="v-text-field-input mb-5"
-            ></v-text-field>
         </v-card>
       </template>
 

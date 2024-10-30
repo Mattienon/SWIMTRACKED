@@ -30,25 +30,27 @@
 
   <!-- Main Content with Transition -->
   <main>
-    <transition name="fade">
+    <transition name="fade" >
       <RouterView />
     </transition>
   </main>
 
   <!-- Box Section -->
-  <div class="box"></div>
+  <div class="box mt-5">
+    <div class="box-2"></div>
+  </div>
   
   <!-- Footer Section -->
   <div class="footer text-center">
-    <strong>
-      <p>For the everyday Swimmer - @SwimTracked {{ new Date().getFullYear() }} </p>
-    </strong>
+    <GreetingAnim/>
+      <p>For the everyday Swimmer @{{ new Date().getFullYear() }} </p>
   </div>
 </template>
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
 import { useAuth } from '@/composables/useAuth';
+import GreetingAnim from './components/GreetingAnim.vue';
 
 // Use the authentication composable
 const { currentUser } = useAuth(); // Get the currentUser reference
@@ -94,19 +96,63 @@ body {
   background-color: #000;
 }
 
-/* Box Styling */
+
 .box {
-  width: 100%; /* Full width */
-  height: 100px; /* Set height to make it visible */
+  width: 120%; /* Full width */
+  height: 130px; /* Set height to make it visible */
   background-color: var(--primary-color); /* Primary color */
-  margin: 0 auto; /* Center the box */
+  margin: -12px auto; /* Center the box */
   display: block; /* Ensure it behaves as a block element */
-  
+
   /* Masking Properties */
   --mask: radial-gradient(54.67px at 50% 77px, #000 99%, #0000 101%) calc(50% - 70px) 0/140px 100%,
           radial-gradient(54.67px at 50% -42px, #0000 99%, #000 101%) 50% 35px/140px 100% repeat-x;
   -webkit-mask: var(--mask);
   mask: var(--mask);
+
+  /* Animation Wave Speed */
+  animation: wave 3s ease-in-out infinite;
+}
+.box-2{
+  width: 105%; /* Full width */
+  height: 100px; /* Set height to make it visible */
+  background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+  display: block; /* Ensure it behaves as a block element */
+
+  /* Masking Properties */
+  --mask: radial-gradient(54.67px at 50% 77px, #000 99%, #0000 101%) calc(50% - 70px) 0/140px 100%,
+          radial-gradient(54.67px at 50% -42px, #0000 99%, #000 101%) 50% 35px/140px 100% repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+
+  /* Animation Wave Speed */
+  animation: waveX 4s ease-in-out infinite;
+}
+/* Keyframes for the water-like animation */
+@keyframes waveX {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-80px); /* Move up */
+    
+  }
+  100% {
+    transform: translateX(0); /* Back to original position */
+  }
+}
+/* Keyframes for the water-like animation */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Move up */
+    
+  }
+  100% {
+    transform: translateY(0); /* Back to original position */
+  }
 }
 
 /* Layout and Structure */
@@ -234,8 +280,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.3rem 0.8rem; /* Less padding on smaller screens */
   }
 
-  .box {
-    height: 60px; /* Adjust height for mobile */
+  .box{
+    height: 80px; /* Adjust height for mobile */
+  }
+  .box-2{
+    height: 80px;;
   }
 
   .topwave {
@@ -263,6 +312,9 @@ h1, h2, h3, h4, h5, h6 {
 
   .box {
     height: 50px;
+  }
+  .box-2{
+    height: 20px;;
   }
 
   .footer {

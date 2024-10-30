@@ -7,6 +7,7 @@
         <v-card class="mx-auto elevation-2">
           <video
             muted
+            autoplay
             class="video-cover"
             @mouseover="playVideo"
             @mouseleave="pauseVideo"
@@ -122,7 +123,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import {  computed, onMounted } from 'vue'
 import {
   swimLogs,
   currentPage,

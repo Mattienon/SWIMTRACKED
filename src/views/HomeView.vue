@@ -1,101 +1,106 @@
 <template>
-  <v-container class="mt-15" fluid>
-    <v-row align="start" justify="center">
-      <!-- Left Column: Welcome Section and Progress -->
-      <v-col cols="12" md="6" class="welcome-section">
-        <h1 class="greeting">Hello, {{ currentUser?.firstName || 'Swimmer' }}!</h1>
-        <h2 class="subheading">Keep pushing towards your swimming goals!</h2>
-        <p class="intro-text">
-          Every lap counts! Track your progress, update your goals, and see how much you've accomplished. Let's dive in!
-        </p>
-        
-        <!-- Motivational Quote -->
-        <v-card class="quote-card my-2" outlined>
-          <v-card-text class="text-center quote-text">
-            <em>"The water is your friend. You don’t have to fight with water; just share with it."</em>
-            <br /> — Dale Oen
-          </v-card-text>
-        </v-card>
-        
-        <!-- Button to Add New Swim Session -->
-        <RouterLink to="/swimlogs">
-            <v-btn class="swim-btn" elevation="5" depressed>
-                Log Your Next Swim
-                <v-icon left>mdi-plus</v-icon> 
-              </v-btn>
-        </RouterLink>
-      </v-col>
-      <v-col cols="12" md="6" class="personal-best-column mb-10">
-  <v-card class="personalbest mb-4">
-    <v-card-text>
-      <h4 class="section-title">Your Personal Best:</h4>
-      <v-divider></v-divider> <!-- Optional divider for separation -->
-      <div class="personal-bests-list">
-        <h4 class="PB">
-          <strong>Crawl:</strong> <span class="personal-best-value">{{ personalBests.crawl || 'No Best Yet' }}</span> Seconds
-        </h4>
-        <h4 class="PB">
-          <strong>Breaststroke:</strong> <span class="personal-best-value">{{ personalBests.breaststroke || 'No Best Yet' }}</span> Seconds
-        </h4>
-        <h4 class="PB">
-          <strong>Butterfly:</strong> <span class="personal-best-value">{{ personalBests.butterfly || 'No Best Yet' }}</span> Seconds
-        </h4>
-        <h4 class="PB">
-          <strong>Backstroke:</strong> <span class="personal-best-value">{{ personalBests.backstroke || 'No Best Yet' }}</span> Seconds
-        </h4>
-      </div>
-    </v-card-text>
-  </v-card>
-  
-  <v-card class="stats">
-    <v-card-text>
-      <h4 class="section-title">Swim Stats</h4>
-      <v-divider></v-divider> <!-- Optional divider for separation -->
-      <div class="swim-stats">
-        <h4>Total Swim Logs: <span class="stats-value">{{ swimLogCount }}</span></h4> <!-- Total logs -->
-        <h4>Total Distance Swum: <span class="stats-value">{{ totalDistance }}</span> meters</h4> <!-- Total distance -->
-      </div>
-      <v-btn color="" class="mt-4" elevation="2">
-        <RouterLink to="/entries" class="text-black">YOUR SESSIONS</RouterLink>
+  <v-container class="mt-10 container" fluid>
+<v-row align="start" justify="center" class="item-center">
+  <!-- Middle Column: Personal Best and Swim Stats -->
+  <v-col cols="12"   class="welcome-section my-2"> <!-- Fixed width for the left column -->
+    <h1 class="greeting">Hello, {{ currentUser?.firstName || 'Swimmer' }}!</h1>
+    <h2 class="subheading">Keep pushing towards your swimming goals!</h2>
+    <p class="intro-text">
+      Every lap counts! Track your progress, update your goals, and see how much you've accomplished. Let's dive in!
+    </p>
+    <RouterLink to="/swimlogs">
+      <v-btn class="swim-btn" elevation="5" depressed>
+        Log Your Next Swim
+        <v-icon left>mdi-plus</v-icon> 
       </v-btn>
-    </v-card-text>
-  </v-card>
-</v-col>
-      
-<v-divider class="mb-10"></v-divider>
-      <!-- Right Column: Goals and Swim Sessions -->
-      <v-col cols="12" md="12">
-        <div class="ag-format-container">
-          <div class="ag-courses_box">
-            <!-- Goals -->
-            <div class="ag-courses_item" v-for="(goal, index) in goals" :key="index">
-              <box class="ag-courses-item_link">
-                <div class="ag-courses-item_bg"></div>
-                <div class="ag-courses-item_title">Improve {{ index + 1 }}</div>
-                <div class="ag-courses-item_date-box">
-                  <span class="ag-courses-item_date">{{ goal || 'No Goal Set' }}</span>
-                </div>
-              </box>
+    </RouterLink>
+    </v-col>
+    
+    <GreetingAnim class="dividertext mt-10"/>
+    <v-divider class=" mb-15 mb-5"></v-divider>
+
+    <v-col cols="12" md="6" class="personal-best-column mb-10 item"> <!-- Make this column flexible -->
+    <v-card class="personalbest mb-4">
+      <v-card-text>
+        <h4 class="section-title">Your Personal Best:</h4>
+        <v-divider></v-divider>
+        <div class="personal-bests-list">
+          <h4 class="PB">
+            <strong>Crawl:</strong> <span class="personal-best-value">{{ personalBests.crawl || 'No Best Yet' }}</span>
+          </h4>
+          <h4 class="PB">
+            <strong>Breaststroke:</strong> <span class="personal-best-value">{{ personalBests.breaststroke || 'No Best Yet' }}</span> 
+          </h4>
+          <h4 class="PB">
+            <strong>Butterfly:</strong> <span class="personal-best-value">{{ personalBests.butterfly || 'No Best Yet' }}</span>
+          </h4>
+          <h4 class="PB">
+            <strong>Backstroke:</strong> <span class="personal-best-value">{{ personalBests.backstroke || 'No Best Yet' }}</span> 
+          </h4>
+        </div>
+        <div class="d-flex justify-end mt-4"> 
+          <v-btn class="goal-btn" elevation="2">
+            <RouterLink to="/about" class="text-black">SET GOALS</RouterLink>
+          </v-btn>
+        </div>
+      </v-card-text>
+    </v-card>
+  </v-col>
+  <v-col cols="12"md="6" class="personal-best-column mb-10 item">
+    <v-card class="stats">
+      <v-card-text>
+        <h4 class="section-title item">Swim Stats</h4>
+        <v-divider></v-divider>
+        <div class="swim-stats">
+          <h4>Total Swim Logs: <span class="stats-value">{{ swimLogCount }}</span></h4>
+          <h4>Total Distance Swum: <span class="stats-value">{{ totalDistance }}</span> meters</h4>
+        </div>
+        <div class="d-flex justify-end mt-4"> 
+          <v-btn class="stats-btn mt-4" elevation="2">
+            <RouterLink to="/entries" class="text-black">YOUR SESSIONS</RouterLink>
+          </v-btn>
+        </div>
+      </v-card-text>
+    </v-card>
+  </v-col>
+
+<v-divider class="mt-10 mb-10"></v-divider>
+  <!-- Right Column: Goals and Swim Sessions -->
+  <v-col cols="12" sm="12" md="6"> <!-- Fixed width for the right column -->
+    <div class="ag-format-container">  
+      <div class="ag-courses_box">
+        <div class="ag-courses_item" v-for="(goal, index) in goals" :key="index">
+          <div class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+            <div class="ag-courses-item_title">Improve {{ index + 1 }}</div>
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">{{ goal || 'No Goal Set' }}</span>
             </div>
-          </div></div>
-        </v-col>
-          <v-col cols="12" md="12">
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-col>
+  <v-col cols="12" sm="12" md="6">
         <div class="ag-format-container">
           <div class="ag-courses_box">
             <div class="ag-courses_item" v-for="(swimGoal, index) in swimGoals" :key="index">
-        <div class="ag-courses-item_link">
-          <div class="ag-courses-item_bg"></div>
-          <div class="ag-courses-item_title">Swim Goal {{ index + 1 }}</div>
-          <div class="ag-courses-item_date-box">
-            <span class="ag-courses-item_date">{{ swimGoal || 'No Swim Goal Set' }}</span>
-          </div>
+              <div class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <div class="ag-courses-item_title">Swim Goal {{ index + 1 }}</div>
+                <div class="ag-courses-item_date-box">
+                  <span class="ag-courses-item_date">{{ swimGoal || 'No Swim Goal Set' }}</span>
+                </div>
+              </div>
+            </div>        
+          </div>       
         </div>
-      </div>        
-    </div>       
-  </div>
       </v-col>
-    </v-row>
-    <RouterLink to="/about" class="text-center"> <p>Update or edit your goals?</p></RouterLink>
+</v-row>
+
+    <RouterLink to="/about" class="text-center"> 
+      <p>Update or edit your goals?</p>
+    </RouterLink>
   </v-container>
 </template>
 
@@ -104,6 +109,8 @@ import { ref, onMounted, watch } from 'vue';
 import { userService } from '@/composables/userService';
 import { swimLogService } from '@/composables/swimLogService'; // Adjust if your service is located elsewhere
 import { useAuth } from '@/composables/useAuth';
+import GreetingAnim from '@/components/GreetingAnim.vue';
+
 
 const { currentUser } = useAuth();
 
@@ -170,6 +177,97 @@ watch(() => currentUser.value, (newUser) => {
 </script>
 
 <style scoped>
+.v-container {
+  padding: 5%;
+}
+.dividertext{
+  padding-left: 15px;
+  margin-bottom: -1.2%;
+  
+}
+.welcome-section {
+  padding: 2rem; /* Add padding for spacing */
+  background: 
+    linear-gradient(to right, var(--accent-color),  rgba(0, 0, 0, 0.7) 100%), /* Adjusted gradient colors with opacity */
+    url('../assets/introhead.jpeg') no-repeat center center; /* Background image */
+  
+  background-size: cover; /* Ensure the image covers the whole section */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* Add text shadow for better readability */
+.greeting,
+.subheading,
+.intro-text {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); /* Subtle text shadow for contrast */
+}
+
+.greeting {
+  font-size: 2.5rem; /* Increase size for a bold greeting */
+  font-weight: 700; /* Bold weight for emphasis */
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  background-clip: text;
+  -webkit-background-clip: text; /* Support for Safari */
+  color: transparent;
+  margin-bottom: 0.5rem; /* Space below greeting */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+.subheading {
+  font-size: 1.5rem; /* Moderate size for subheading */
+  color: var(--darker-color); /* Darker color for better readability */
+  margin-bottom: 1.5rem; /* Space below subheading */
+  font-weight: 500; /* Slightly lighter font weight */
+}
+
+.intro-text {
+  font-size: 1.1rem; /* Slightly smaller font size */
+  color: var(--darker-color); /* Darker color for better readability */
+  margin-bottom: 2rem; /* Space below intro text */
+  line-height: 1.6; /* Improve readability with line height */
+}
+
+.swim-btn {
+  display: flex;
+  justify-content: center; /* Center button text */
+  align-items: center; /* Center icon vertically */
+  width: 80%;
+  max-width: 300px; /* Set a maximum width for the button */
+  height: 50px;
+  background: linear-gradient(to right, var(--primary-color) , var(--accent-color)); /* Blue gradient */
+  border-radius: 8px; /* Rounded corners for the button */
+  color: white;
+  font-weight: 800; /* Bold font */
+  border: none; /* Remove default border */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.swim-btn:hover {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Reverse gradient on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .greeting {
+    font-size: 1.8rem; /* Adjust size for smaller screens */
+  }
+
+  .subheading {
+    font-size: 1.2rem; /* Adjust subheading size */
+  }
+
+  .intro-text {
+    font-size: 0.9rem; /* Slightly smaller font size */
+  }
+
+  .swim-btn {
+    width: 100%; /* Full width on smaller screens */
+    font-size: 1rem; /* Increase font size for better accessibility */
+  }
+}
+
+
 h4 {
   font-size: large;
 }
@@ -274,220 +372,22 @@ h4 {
   background-color: var(--primary-color);
 }
 
-/* Responsive adjustments for smaller screens */
-@media only screen and (max-width: 979px) {
-  .ag-courses_item {
-    flex-basis: calc(30% - 30px);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .ag-courses_item {
-    flex-basis: 100%;
-  }
-}
-
-.welcome-section {
-  padding: 3rem;
-  background-color: var(--primary-color);
-  color: #fff;
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  box-shadow: var(--box-shadow-6s);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease; /* Added transition for section hover */
-}
-
-.welcome-section:hover {
-  transform: scale(1.02); /* Slight scale on hover for emphasis */
-  transition: 0.3s ease-in-out;
-  box-shadow: var(--box-shadow-4s);
-}
-
-.welcome-section::before,
-.welcome-section::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  z-index: 0;
-}
-
-.welcome-section::before {
-  width: 250px;
-  height: 250px;
-  top: -80px;
-  left: -80px;
-}
-
-.welcome-section::after {
-  width: 150px;
-  height: 150px;
-  bottom: -60px;
-  right: -60px;
-}
-
-.greeting {
-  font-size: var(--font-size-xxl);
-  text-align: center;
-  font-weight: 600;
-  font-family: var(--heading-font-family);
-  background: linear-gradient(to right, var(--paragraph-color), var(--secondary-color));
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0.5rem;
-}
-
-.subheading {
-  font-size: var(--font-size-xl);
-  text-align: center;
-  font-family: var(--heading-font-family);
-  margin-bottom: 1rem;
-}
-
-.intro-text {
-  font-size: var(--font-size-lg);
-  color: var(--light-color);
-  text-align: center;
-  font-family: var(--paragraph-font-family);
-  margin-bottom: 2rem;
-}
-
-.swim-btn {
-  display: flex;
-  margin: auto;
-  width: 80%;
-  height: 50px;
-  background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-  color: white;
-  transition: all 0.3s ease-in-out; /* Enhanced transition */
-  border-radius: 5px;
-  box-shadow: var(--box-shadow-4s);
-}
-
-.stats-card {
-  background-color: var(--accent-color);
-}
-
-/* Tablet & Small Desktops (768px and below) */
-@media (max-width: 1024px) {
-  .greeting {
-    font-size: 1.8rem;
-  }
-
-  .subheading {
-    font-size: 1.2rem;
-  }
-
-  .intro-text {
-    font-size: 1rem;
-  }
-
-  .ag-courses_item {
-    flex-basis: 80%;
-  }
-
-  .progress-circle {
-    width: 150px;
-    height: 150px;
-  }
-
-  .percentage {
-    font-size: 18px;
-  }
-
-  .logs-count {
-    font-size: 14px;
-  }
-}
-
-/* Small Devices & Mobile Phones (480px and below) */
-@media (max-width: 480px) {
-  .v-btn {
-    padding: 0.4rem;
-    font-size: 0.75rem;
-  }
-
-  .greeting {
-    font-size: 1.5rem;
-  }
-
-  .subheading {
-    font-size: 1rem;
-  }
-
-  .intro-text {
-    font-size: 0.9rem;
-  }
-
-  .progress-circle {
-    width: 130px;
-    height: 130px;
-  }
-
-  .percentage {
-    font-size: 16px;
-  }
-
-  .logs-count {
-    font-size: 12px;
-  }
-  .ag-courses_item {
-    flex-basis: 100%;
-    margin-top: 5%;
-  }
-
-}
-
-/* Very Small Devices (320px and below) */
-@media (max-width: 320px) {
-  .greeting {
-    font-size: 1.2rem;
-  }
-
-  .subheading {
-    font-size: 0.9rem;
-  }
-
-  .intro-text {
-    font-size: 0.8rem;
-  }
-
-  .progress-circle {
-    width: 100px;
-    height: 100px;
-  }
-
-  .percentage {
-    font-size: 14px;
-  }
-
-  .logs-count {
-    font-size: 10px;
-  }
-
-  .v-btn {
-    font-size: 0.7rem;
-    padding: 4px;
-  }
-}
-
-
 .personal-best-column {
+  flex-grow: 1; /* Allows this column to stretch */
   padding: 0 20px; /* Extra padding for the column */
 }
 
-.personalbest, .stats {
-  background-color: var(--dark-background); /* Use a dark background for contrast */
+.personalbest,
+.stats {
+  background: transparent;
   color: white; /* Set text color to white */
-  border-radius: 10px; /* Rounded corners */
   box-shadow: var(--box-shadow-6s); /* Box shadow for depth */
 }
 
 .section-title {
   font-size: 1.5rem; /* Larger title size */
   color: var(--accent-color); /* Accent color for titles */
+  font-weight: 600;
   margin-bottom: 10px; /* Space below the title */
   text-align: center; /* Center align titles */
 }
@@ -510,7 +410,6 @@ h4 {
 
 .swim-stats {
   margin-bottom: 20px; /* Space below the stats */
-
 }
 
 .stats-value {
@@ -518,8 +417,45 @@ h4 {
   font-weight: bold; /* Bold the stats values */
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+
+.item-center {
+  display: flex;
+  flex-direction: row; /* Align items in a row */
+  align-items: flex-start; /* Align items at the start */
+}
+
+.welcome-section,
+.ag-courses_box {
+  width: 100%; /* Ensure these elements take full width of their parent */
+}
+
+.personal-best-column {
+  padding: 0 20px; /* Extra padding for the column */
+}
+
+
+@media only screen and (max-width: 600px) {
+  .v-btn {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .greeting {
+    font-size: 1.5rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+  }
+
+  .ag-courses_item {
+    flex-basis: 100%;
+    margin-top: 5%;
+  }
   .section-title {
     font-size: 1.2rem; /* Adjust section title size for smaller screens */
   }
@@ -527,14 +463,56 @@ h4 {
   .PB {
     font-size: 1rem; /* Adjust personal best font size */
   }
+  .dividertext{
+  padding-left: 15px;
+  margin-bottom: -4.5%;
+  
+}
 }
 
-.quote-card {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: var(--box-shadow-6s);
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
+@media (max-width: 1024px) {
+  .greeting {
+    font-size: 1.8rem;
+  }
+
+  .subheading {
+    font-size: 1.2rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .ag-courses_item {
+    flex-basis: 80%;
+  }
+ 
+  .dividertext{
+  padding-left: 15px;
+  margin-bottom: -1.9%;
+  
 }
+}
+
+/* Very Small Devices (320px and below) */
+@media (max-width: 320px) {
+  .greeting {
+    font-size: 1.2rem;
+  }
+
+  .subheading {
+    font-size: 0.9rem;
+  }
+
+  .intro-text {
+    font-size: 0.8rem;
+  }
+
+  .v-btn {
+    font-size: 0.7rem;
+    padding: 4px;
+  }
+}
+
+
 </style>
-

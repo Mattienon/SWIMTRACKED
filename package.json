@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@date-io/dayjs": "^3.0.0",
+    "animejs": "^3.2.2",
     "dayjs": "^1.11.13",
     "firebase": "^10.13.2",
     "sass": "^1.79.3",
